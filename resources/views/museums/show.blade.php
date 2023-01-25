@@ -12,7 +12,7 @@
     </p>
 
     <div>
-        <img src="{{asset('storage/' . $museum->image)}}" alt=" {{ $museum->name }}">
+        <img class="w-50" src="{{asset('storage/' . $museum->image)}}" alt=" {{ $museum->name }}">
     </div>
 
     <p>
