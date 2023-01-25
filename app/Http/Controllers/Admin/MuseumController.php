@@ -120,7 +120,7 @@ class MuseumController extends Controller
                 Storage::disk('public')->delete($museum->image);
             }
             $form_data['image_original_name'] = $request->file('image')->getClientOriginalName();
-            $form_data['mage'] = Storage::put('uploads', $form_data['image']);
+            $form_data['image'] = Storage::put('uploads', $form_data['image']);
         }
 
         $museum->update($form_data);
