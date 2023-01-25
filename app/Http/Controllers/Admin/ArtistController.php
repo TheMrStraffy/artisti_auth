@@ -82,14 +82,17 @@ class ArtistController extends Controller
         //
     }
 
+
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Models\Artist $artist
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Artist $artist)
     {
-        //
+        $artist->delete();
+
+        return redirect()->route('admin.artist.index')->with('delete', 'Artista eliminato');
     }
 }
