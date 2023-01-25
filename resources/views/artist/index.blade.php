@@ -20,7 +20,7 @@
                             <a class="btn btn-primary" href="{{ route('admin.artist.show', $artist) }}">
                                 <i class="fa-solid fa-eye"></i>
                             </a>
-                            <a class="btn btn-warning mx-2" href="">
+                            <a class="btn btn-warning mx-2" href="{{route('admin.artist.edit', $artist)}}">
                                 <i class="fa-solid fa-pen-to-square"></i>
                             </a>
                             @include('artist.partials.form-delete', ['artist'=>$artist])
