@@ -10,6 +10,8 @@ class Artist extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['name', 'slug'];
+
     public function artworks(){
         return $this->hasMany(Artwork::class);
     }

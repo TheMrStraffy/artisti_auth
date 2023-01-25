@@ -41,12 +41,13 @@ class ArtistController extends Controller
     public function store(Request $request)
     {
         $form_data = $request->all();
+        $form_data['slug'] = Artist::generateSlug($form_data['name']);
 
         $new_artist = new Artist();
-        $new_artist->name = $form_data['name'];
+        $new_artist->fill($form_data);
         $new_artist->save();
 
-        return redirect()->route('artist.show', $new_artist)->with('message', 'Artist correctly added');
+        return redirect()->route('admin.artist.show', $new_artist)->with('message', 'Artist correctly added');
     }
 
     /**
