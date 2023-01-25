@@ -1,3 +1,6 @@
+
+@auth
+
 <aside>
     <nav class="bg-dark p-2">
         <a class="btn btn-info  d-block mb-3" href="{{ route('admin.artist.index') }}">ARTIST CRUD</a>
@@ -6,4 +9,5 @@
     </nav>
 
 </aside>
+@endauth
 
