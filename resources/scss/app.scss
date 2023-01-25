@@ -1,0 +1,13 @@
+@import '~bootstrap/scss/bootstrap';
+@import './museum.scss';
+
+@import 'resources/scss/artist';
+
+body{
+    background-color: black;
+}
+
+
+aside{
+    width: 200px;
+}
