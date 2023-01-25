@@ -23,9 +23,7 @@
                             <a class="btn btn-warning mx-2" href="">
                                 <i class="fa-solid fa-pen-to-square"></i>
                             </a>
-                            <a class="btn btn-danger" href="">
-                                <i class="fa-solid fa-trash"></i>
-                            </a>
+                            @include('artist.partials.form-delete', ['artist'=>$artist])
                         </td>
                     </tr>
                 @endforeach
