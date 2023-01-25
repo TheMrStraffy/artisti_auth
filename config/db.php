@@ -33,6 +33,10 @@ return [
         [
             'id'   => 8,
             'name' => 'Pierre-Auguste Renoir'
+        ],
+        [
+            'id'=> 9,
+            'name' => 'Salvador Dalì'
         ]
     ],
     'museums' => [
