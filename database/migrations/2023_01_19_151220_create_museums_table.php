@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('slug', 160)->unique();
             $table->string('address');
             $table->string('image')->nullable();
+            $table->string('image_original_name')->nullable();
             $table->string('nation', 30);
             $table->timestamps();
         });
