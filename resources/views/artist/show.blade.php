@@ -21,6 +21,6 @@
 
     <div class="d-flex justify-content-center py-5">
         <a class="btn btn-warning" href="">MODIFICA</a>
-        <a class="btn btn-danger mx-3" href="">ELIMINA</a>
+        @include('artist.partials.form-delete', ['artist'=>$artist])
     </div>
 @endsection
