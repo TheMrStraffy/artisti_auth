@@ -94,7 +94,7 @@ class ArtistController extends Controller
             $artist_data['slug'] = $artist->slug;
         }
         $artist->update($artist_data);
-        return redirect()->route('artist.show', compact('artist'))->with('message', 'Artista aggiornato correttamente');
+        return redirect()->route('admin.artist.show', compact('artist'))->with('message', 'Artista aggiornato correttamente');
     }
 
 
