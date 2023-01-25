@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Artist;
+use App\Models\Artwork;
+use App\Models\Museum;
 use Illuminate\Http\Request;
 
 class ArtistController extends Controller
@@ -26,6 +28,7 @@ class ArtistController extends Controller
      */
     public function create()
     {
+
         return view('artist.create');
     }
 
@@ -40,12 +43,10 @@ class ArtistController extends Controller
         $form_data = $request->all();
 
         $new_artist = new Artist();
-
         $new_artist->name = $form_data['name'];
-
         $new_artist->save();
 
-        return redirect(route('artist.index'));
+        return redirect()->route('artist.show', $new_artist)->with('message', 'Artist correctly added');
     }
 
     /**
