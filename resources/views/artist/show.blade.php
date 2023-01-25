@@ -19,8 +19,9 @@
   </div>
 
 
-  <div class="d-flex justify-content-center py-5">
-    <a class="btn btn-warning me-2" href="">MODIFICA</a>
-    @include('artist.partials.form-delete', ['artist' => $artist])
-  </div>
+    <div class="d-flex justify-content-center py-5">
+        <a class="btn btn-warning me-2" href="{{route('admin.artist.edit', $artist)}}">MODIFICA</a>
+        @include('artist.partials.form-delete', ['artist'=>$artist])
+    </div>
+
 @endsection

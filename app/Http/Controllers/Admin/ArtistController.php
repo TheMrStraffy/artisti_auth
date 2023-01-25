@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use Illuminate\Support\Str;
 use App\Http\Controllers\Controller;
 use App\Models\Artist;
 use App\Models\Artwork;
@@ -67,9 +68,9 @@ class ArtistController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Artist $artist)
     {
-        //
+        return view('artist.edit', compact('artist'));
     }
 
     /**
@@ -79,9 +80,21 @@ class ArtistController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Artist $artist)
     {
-        //
+        $str = new Str();
+
+        $artist_class= new Artist();
+
+
+        $artist_data = $request->all();
+        if($artist_data['name'] != $artist->name){
+            $artist_data['slug'] = generateSlug($artist_data['name'], $artist_class, $str);
+        }else{
+            $artist_data['slug'] = $artist->slug;
+        }
+        $artist->update($artist_data);
+        return redirect()->route('artist.show', compact('artist'))->with('message', 'Artista aggiornato correttamente');
     }
 
 
