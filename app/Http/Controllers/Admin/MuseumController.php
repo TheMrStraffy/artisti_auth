@@ -55,10 +55,11 @@ class MuseumController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Museum $museum)
     {
-        //
+        return view('museums.show', compact('museum'));
     }
+
 
     /**
      * Show the form for editing the specified resource.
@@ -89,8 +90,11 @@ class MuseumController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Museum $museum)
     {
-        //
+        $museum->delete();
+
+        return redirect()->route('admin.museums.index')->with('messages', "Museo $museum->name eliminato con successo");
     }
+
 }
