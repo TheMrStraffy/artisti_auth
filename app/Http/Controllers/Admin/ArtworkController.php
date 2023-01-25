@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Artist;
 use App\Models\Artwork;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class ArtworkController extends Controller
 {
@@ -15,7 +17,7 @@ class ArtworkController extends Controller
      */
     public function index()
     {
-        $all_artworks = Artwork::paginate(5);
+        $all_artworks = Artwork::all();
         return view('artworks.index', compact('all_artworks'));
     }
 
@@ -26,7 +28,8 @@ class ArtworkController extends Controller
      */
     public function create()
     {
-        //
+        $artists = Artist::all();
+        return view('artworks.create', compact('artists'));
     }
 
     /**
@@ -37,7 +40,20 @@ class ArtworkController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $str= new Str;
+        $form_data = $request->all();
+        $new_artwork = new Artwork();
+        $form_data['slug'] = generateSlug($form_data['name'], $new_artwork, $str);
+        $new_artwork->fill($form_data);
+        $new_artwork->save();
+
+        if(array_key_exists('artist', $form_data)){
+            $new_artwork->artist()->attach($form_data['artist']);
+        }
+        return redirect()->route('admin.artwork.show', $new_artwork);
+
+
+
     }
 
     /**
@@ -46,9 +62,9 @@ class ArtworkController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Artwork $artwork)
     {
-        //
+        return view('artworks.show', compact('artwork'));
     }
 
     /**
@@ -57,9 +73,9 @@ class ArtworkController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Artwork $artwork)
     {
-        //
+        return view('artworks.edit', compact('artwork'));
     }
 
     /**
