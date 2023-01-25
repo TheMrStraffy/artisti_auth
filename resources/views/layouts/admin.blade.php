@@ -21,11 +21,12 @@
 <body>
 
     @include('partials.header')
-    @include('partials.aside')
 
 
 
     <main>
+
+        @include('partials.aside')
         @yield('content')
     </main>
 </body>

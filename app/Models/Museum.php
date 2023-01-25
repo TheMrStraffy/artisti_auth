@@ -10,7 +10,7 @@ class Museum extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'slug', 'nation'];
+    protected $fillable = ['name', 'slug', 'nation', 'address', 'image', 'image_original_name'];
 
 
     public static function generateSlug($string){

@@ -10,6 +10,12 @@
 
     <div class="container bg-dark">
 
+        @if (session('messages'))
+            <div class="alert alert-success" role="alert">
+                {{ session('messages')}}
+            </div>
+        @endif
+
         <table class="table text-white">
             <thead>
                 <tr>
@@ -26,10 +32,15 @@
                         <td>{{ $museum->name }}</td>
                         <td>{{ $museum->nation }}</td>
                         <td>
-                            <a class="btn btn-primary" href="{{ route('admin.museums.show', $museum->slug) }}" title="show"><i
+                            <a class="btn btn-primary" href="{{ route('admin.museums.show', $museum) }}" title="show"><i
                                     class="fa-regular fa-eye"></i></a>
                             <a class="btn btn-warning " href="{{ route('admin.museums.edit', $museum) }}" title="edit"><i
                                     class="fa-solid fa-pencil"></i></a>
+                            @include('museums.partials.form-delete', [
+                                'title' => $museum->name,
+                                'route' => 'admin.museums.destroy',
+                                'element' => $museum
+                            ])
                         </td>
                     </tr>
                 @empty

@@ -4,19 +4,20 @@
 
 <div class="container-fluid text-white">
 
-    <h1>INSERISCI UN NUOVO MUSEO</h1>
+    <h1>MODIFICA MUSEO</h1>
 
-    <form action="{{route('admin.museums.store')}}" method="POST" enctype="multipart/form-data">
+    <form action="{{route('admin.museums.update', $museum)}}" method="POST" enctype="multipart/form-data">
         @csrf
+        @method('PUT')
 
         <div class="mb-3">
             <label for="name" class="form-label">Nome</label>
-            <input type="text" name="name" class="form-control" id="name" value="{{old('name')}}" placeholder="Inserisci il nome del museo">
+            <input type="text" name="name" class="form-control" id="name" value="{{old('name', $museum->name)}}" placeholder="Inserisci il nome del museo">
         </div>
 
         <div class="mb-3">
             <label for="address" class="form-label">Indirizzo</label>
-            <input type="text" name="address" class="form-control" id="address" value="{{old('address')}}" placeholder="Inserisci l'indirizzo del museo">
+            <input type="text" name="address" class="form-control" id="address" value="{{old('address', $museum->address)}}" placeholder="Inserisci l'indirizzo del museo">
         </div>
 
         <div class="mb-3">
@@ -33,7 +34,7 @@
 
         <div class="mb-3">
             <label for="nation" class="form-label">Nazione</label>
-            <input type="text" name="nation" class="form-control" id="nation" value="{{old('nation')}}" placeholder="Inserisci la nazione del museo">
+            <input type="text" name="nation" class="form-control" id="nation" value="{{old('nation', $museum->nation)}}" placeholder="Inserisci la nazione del museo">
         </div>
 
         <button type="submit" class="btn btn-outline-success">CREA</button>
