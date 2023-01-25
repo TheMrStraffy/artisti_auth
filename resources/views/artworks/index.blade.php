@@ -42,8 +42,9 @@
                                 <td class="text-white">{{ $artwork->name }}</td>
                                 <td class="text-white">{{ $artwork->year }}</td>
                                 <td>
-                                    <a class="btn btn-success" href="">Vai</a>
-                                    <a class="btn btn-warning" href="">Edita</a>
+                                    <a class="btn btn-success" href="{{route('admin.artwork.show', $artwork)}}">Vai</a>
+                                    <a class="btn btn-warning" href="{{route('admin.artwork.edit', $artwork)}}">Edita</a>
+                                    <a class="btn btn-warning" href="{{route('admin.artwork.create', $artwork)}}">Crea</a>
                                     <form action="" method="POST" class="d-inline"
                                         onsubmit="return confirm('Confermi l\'eliminazione di: {{ $artwork->name }}?')"
                                         class="d-inline" action="" method="POST">
