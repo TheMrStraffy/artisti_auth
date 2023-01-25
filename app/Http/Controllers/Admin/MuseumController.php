@@ -86,9 +86,9 @@ class MuseumController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Museum $museum)
     {
-        //
+        return view('museums.edit', compact('museum'));
     }
 
     /**
@@ -98,9 +98,34 @@ class MuseumController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Museum $museum)
     {
-        //
+        $str = new Str();
+        $museum_class = new Museum();
+
+        $form_data = $request->all();
+
+        // modifico lo slug generandone uno nuovo se e solo se il titolo è stato modifcato
+        if($form_data['name'] != $museum->name){
+            $form_data['slug'] = generateSlug($form_data['name'], $museum_class, $str);
+        } else {
+            $form_data['slug'] = $museum->slug;
+        }
+
+        // controllo immagine
+        if(array_key_exists('image',$form_data)){
+
+            // se invio una nuova immagine devo eliminare la vecchia dal filesystem
+            if($museum->image){
+                Storage::disk('public')->delete($museum->image);
+            }
+            $form_data['image_original_name'] = $request->file('image')->getClientOriginalName();
+            $form_data['mage'] = Storage::put('uploads', $form_data['image']);
+        }
+
+        $museum->update($form_data);
+
+        return redirect()->route('admin.museums.show', $museum)->with('messagges', "Il museo è stato modificato correttamente");
     }
 
     /**
